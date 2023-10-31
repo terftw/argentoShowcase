@@ -1,0 +1,63 @@
+# =============================
+# Top Level Queries & Mutations
+# =============================
+
+type Query {
+  user: UserResponse!
+  clients(input: ClientsInput): ClientsResponse!
+}
+
+type Mutation {
+  createClient(input: CreateClientInput!): String!
+  editClient(input: EditClientInput!): String!
+  deleteClient(input: DeleteClientInput!): String!
+  editUser(input: EditUserInput!): Boolean!
+}
+
+# =============================
+# Top Level Response & Input
+# =============================
+
+type UserResponse {
+  user: User!
+}
+
+type ClientsResponse {
+  clients: [Client!]!
+}
+
+input ClientsInput {
+  ids: [String!]
+}
+
+input CreateClientInput {
+  attributesJson: String!
+}
+
+input EditClientInput {
+  id: String!
+  attributesJson: String!
+}
+
+input DeleteClientInput {
+  id: String!
+}
+
+input EditUserInput {
+  clientAttributesSpecJson: String
+  clientReportConfigDataJson: String
+}
+
+# =============================
+# Data Models
+# =============================
+
+type User {
+  clientAttributesSpecJson: String!
+  clientReportConfigDataJson: String!
+}
+
+type Client {
+  id: String!
+  attributesJson: String!
+}
